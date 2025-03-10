@@ -1,0 +1,87 @@
+module smart-assistance-stick {
+namespace "urn:smart-assistance-stick";
+prefix sas;
+description
+"Configuration module for Smart Assistance Stick for visually impaired users.";
+revision "2024-11-18" {
+description "Initial revision.";
+}
+container smart-stick {
+description "Top-level container for smart stick configurations.";
+container ultrasonic-sensor {
+description "Settings for the ultrasonic sensor.";
+leaf range-threshold {
+type uint16;
+description "Detection range threshold in centimeters.";
+default 100;
+}
+}
+container water-sensor {
+description "Settings for the water sensor.";
+leaf sensitivity {
+type uint8;
+description "Sensitivity level of the water sensor (0-255).";
+default 128;
+}
+}
+container gps-module {
+description "Settings for the GPS module.";
+leaf update-interval {
+type uint16;
+description "Interval for GPS data updates in seconds.";
+default 5;
+}
+leaf enable-location-sharing {
+type boolean;
+description "Enable sharing of GPS data with caregivers.";
+default true;
+}
+}
+container esp8266 {
+description "Settings for ESP8266 communication.";
+leaf ssid {
+type string;
+description "WiFi network SSID.";
+}
+leaf password {
+type string;
+description "WiFi network password.";
+}
+leaf mqtt-server {
+type string;
+description "MQTT server address for data transmission.";
+}
+leaf mqtt-port {
+type uint16;
+description "Port number for MQTT communication.";
+default 1883;
+}
+}
+container buzzer {
+description "Settings for the buzzer.";
+leaf volume {
+type uint8;
+description "Buzzer volume level (0-255).";
+default 128;
+}
+leaf alert-tone {
+type string;
+description "Type of alert tone.";
+default "beep";
+}
+}
+container power-management {
+description "Power management settings.";
+leaf auto-sleep {
+type boolean;
+description "Enable automatic sleep mode.";
+default true;
+}
+leaf battery-status-check {
+type boolean;
+description "Enable battery status checks.";
+default true;
+}
+}
+}
+}
